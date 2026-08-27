@@ -1,0 +1,22 @@
+services:
+
+  frontend:
+    build:
+      context: ./client
+    container_name: spider-link-frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./server
+    container_name: spider-link-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./server/.env
+    environment:
+      DB_HOST: host.docker.internal
+    restart: unless-stopped

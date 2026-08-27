@@ -204,22 +204,29 @@ const Register = () => {
                   </div>
 
                   <button
-                    type="submit"
-                    className="btn btn-spider btn-lg w-100 rounded-pill fw-semibold"
-                    disabled={loading}
-                  >
-                    {loading ? (
-                      <>
-                        <span
-                          className="spinner-border spinner-border-sm me-2"
-                          aria-hidden="true"
-                        />
-                        Creating Account...
-                      </>
-                    ) : (
-                      "Create Account"
-                    )}
-                  </button>
+  type="submit"
+  className="btn btn-lg w-100 rounded-pill fw-semibold"
+  style={{
+    background: "linear-gradient(135deg, #6a11cb, #2575fc)",
+    color: "#ffffff",
+    border: "none",
+    padding: "12px",
+    boxShadow: "0 6px 15px rgba(37, 117, 252, 0.25)",
+  }}
+  disabled={loading}
+>
+  {loading ? (
+    <>
+      <span
+        className="spinner-border spinner-border-sm me-2"
+        aria-hidden="true"
+      />
+      Creating Account...
+    </>
+  ) : (
+    "Create Account"
+  )}
+</button>
 
                 </form>
 

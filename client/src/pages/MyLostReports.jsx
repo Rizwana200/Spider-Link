@@ -48,7 +48,7 @@ const MyLostReports = () => {
       return image;
     }
 
-    return `http://localhost:5000${image}`;
+    return `${image}`;
   };
 
   const getStatus = (status) => {

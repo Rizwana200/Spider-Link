@@ -81,10 +81,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build frontend Docker image
-        run: docker build -t arizwana/spider-link-frontend:v1 ./client
+        run: docker build -t arizwana/spider-link-frontend:v2 ./client
 
       - name: Push frontend Docker image
-        run: docker push arizwana/spider-link-frontend:v1
+        run: docker push arizwana/spider-link-frontend:v2
 
       - name: Build backend Docker image
         run: docker build -t arizwana/spider-link-backend:v1 ./server

@@ -121,10 +121,10 @@ jobs:
         run: kubectl rollout restart deployment/backend -n spider-link
 
       - name: Wait for frontend rollout
-        run: kubectl rollout status deployment/frontend -n spider-link --timeout=120s
+        run: kubectl rollout status deployment/frontend -n spider-link --timeout=5m
 
       - name: Wait for backend rollout
-        run: kubectl rollout status deployment/backend -n spider-link --timeout=120s
+        run: kubectl rollout status deployment/backend -n spider-link --timeout=5m
 
       - name: Check Spider-Link pods
         run: kubectl get pods -n spider-link

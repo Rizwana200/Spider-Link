@@ -91,3 +91,40 @@ jobs:
 
       - name: Push backend Docker image
         run: docker push arizwana/spider-link-backend:v1
+
+
+  deploy:
+    name: Deploy to Minikube
+    runs-on: [self-hosted, linux, x64]
+
+    needs:
+      - docker
+
+    # Deploy only when code is pushed directly to main.
+    # Pull requests will not deploy to the self-hosted runner.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check Kubernetes cluster
+        run: kubectl get nodes
+
+      - name: Apply Kubernetes manifests
+        run: kubectl apply -f k8s/
+
+      - name: Restart frontend
+        run: kubectl rollout restart deployment/frontend -n spider-link
+
+      - name: Restart backend
+        run: kubectl rollout restart deployment/backend -n spider-link
+
+      - name: Wait for frontend rollout
+        run: kubectl rollout status deployment/frontend -n spider-link --timeout=120s
+
+      - name: Wait for backend rollout
+        run: kubectl rollout status deployment/backend -n spider-link --timeout=120s
+
+      - name: Check Spider-Link pods
+        run: kubectl get pods -n spider-link

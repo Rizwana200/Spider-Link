@@ -16,6 +16,6 @@ spec:
       containers:
         - name: frontend
           image: arizwana/spider-link-frontend:v2
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 80

@@ -16,7 +16,7 @@ spec:
       containers:
         - name: backend
           image: arizwana/spider-link-backend:v1
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           env:

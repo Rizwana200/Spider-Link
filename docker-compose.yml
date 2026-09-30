@@ -3,6 +3,8 @@ services:
   frontend:
     build:
       context: ./client
+      args:
+        VITE_API_BASE_URL: /api
     container_name: spider-link-frontend
     ports:
       - "8081:80"
@@ -20,3 +22,7 @@ services:
     environment:
       DB_HOST: host.docker.internal
     restart: unless-stopped
+    networks:
+      default:
+        aliases:
+          - backend-service
